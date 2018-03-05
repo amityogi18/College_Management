@@ -1,3 +1,4 @@
+import { FormObject } from './../domain/formObject';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import * as _ from 'lodash'; 
@@ -9,7 +10,7 @@ import * as _ from 'lodash';
 })
 export class LoginComponent implements OnInit {
   model;
-  data: Array<any> = [];
+  data: Array<FormObject> = [];
   constructor(private router: Router) {
 
    }
