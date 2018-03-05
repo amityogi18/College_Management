@@ -1,0 +1,141 @@
+<div class="middle-box animated fadeInDown ">
+  <div class="row">
+    <div class="col-sm-offset-2 col-sm-8">
+      <div class="panel panel-default">
+        <div class="panel-heading">Sign Up </div>
+        <div class="panel-body">
+          <div class="content-wrapper">
+            <form #registerForm="ngForm" (ngSubmit)="submitRegister(registerForm)">
+              <div class="form-group">
+                <div class="row">
+                  <div class="col-sm-6">
+                    <div class="col-sm-4 control-label">First Name</div>
+                    <div class="col-sm-8">
+                      <input ngModel name='firstName' #firstName='ngModel' id="firstName" type="text" class="form-control" required>
+                      <div class="alert alert-danger" *ngIf="firstName.touched && !firstName.valid">First Name is required</div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="col-sm-4 control-label">Last Name</div>
+                    <div class="col-sm-8">
+                      <input ngModel name='lastName' #lastName='ngModel' id="lastName" type="text" class="form-control" required>
+                      <div class="alert alert-danger" *ngIf="lastName.touched && !lastName.valid">Last Name is required</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="row">
+                  <div class="col-sm-6">
+                    <div class="col-sm-4 control-label">Email Id</div>
+                    <div class="col-sm-8">
+                      <input ngModel name='email' #email='ngModel' name='email' id="email" type="email" class="form-control" required>
+                      <div class="alert alert-danger" *ngIf="email.touched && !email.valid">Email is required</div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="col-sm-4 control-label">Mobile Number</div>
+                    <div class="col-sm-8">
+                      <input ngModel name='mobile' #mobile='ngModel' id="mobile" type="text" class="form-control">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="row">
+                  <div class="col-sm-6">
+                    <div class="col-sm-4 control-label">Username</div>
+                    <div class="col-sm-8">
+                      <input ngModel name='username' #username='ngModel' id="username" type="text" class="form-control" required>
+                      <div class="alert alert-danger" *ngIf="username.touched && !username.valid">User Name is required</div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="col-sm-4 control-label">User</div>
+                    <div class="col-sm-8">
+                      <select ngModel #user class="form-control" name="userType" id="user">
+                        <option value="Student">Student</option>
+                        <option value="Faculty">Faculty</option>
+                      </select>
+                      <div class="alert alert-danger" *ngIf="user.touched && !user.valid">User is required</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="row">
+                  <div class="col-sm-6">
+                    <div class="col-sm-4 control-label">Password</div>
+                    <div class="col-sm-8">
+                      <input ngModel name="password" #password='ngModel' id="password" type="password" class="form-control" required>
+                      <div class="alert alert-danger" *ngIf="password.touched && !password.valid">Password is required</div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="col-sm-4 control-label">Confirm Password</div>
+                    <div class="col-sm-8">
+                      <input ngModel name="confirmPassword" #confirmPassword id="confirmPassword" type="password" class="form-control" required>
+                      <div class="alert alert-danger" *ngIf="confirmPassword.touched && !confirmPassword.valid">Password is Not Matched</div>  
+                      <div class="alert alert-danger" *ngIf='confirmPassword.value !== password.value'>Password & Confirm Password are not same</div>
+                      
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="row">
+                  <div class="col-sm-6">
+                    <div class="col-sm-4 control-label">Gender</div>
+                    <div class="col-sm-8">
+                      <div class="col-sm-3">
+                        <input ngModel value='male' type="radio" name="gender">Male
+                      </div>
+                      <div class="col-sm-3">
+                        <input ngModel value='female' type="radio" name="gender">Female
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="col-sm-4 control-label">Address</div>
+                    <div class="col-sm-8">
+                      <textarea ngModel name="address" #address id="address" type="text" class="form-control"></textarea>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="row">
+                  <div class="col-sm-6">
+                    <div class="col-sm-4 control-label">City</div>
+                    <div class="col-sm-8">
+                      <select ngModel #city class="form-control" name="city" id="city">
+                        <option value="Indore">Indore</option>
+                        <option value="Pune">Pune </option>
+                        <option value="Mumbai">Mumbai</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="col-sm-4 control-label">State</div>
+                    <div class="col-sm-8">
+                      <select ngModel #state class="form-control" name="state" id="state">
+                        <option value="MP">MP</option>
+                        <option value="Maharashtra">Maharashtra</option>
+                        <option value="Gujrat">Gujrat</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="pull-right">
+                  <button class="btn btn-primary" type="submit">Sign Up</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
