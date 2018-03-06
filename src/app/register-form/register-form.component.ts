@@ -9,7 +9,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class RegisterFormComponent implements OnInit {
   @ViewChild('registerForm') form;
-
+  hide: boolean;
   constructor(private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
@@ -31,11 +31,10 @@ export class RegisterFormComponent implements OnInit {
   }
 
   getProfileData(id) {
-    debugger;
     const profileData = JSON.parse(localStorage.getItem('records')).data[id];
     setTimeout(() => {
+      this.hide = true;
       this.form.form.setValue(profileData);
-      this.form.form.disabled();
 
     }, 200);
   }
