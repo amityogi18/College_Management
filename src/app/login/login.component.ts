@@ -1,7 +1,7 @@
 import { FormObject } from './../domain/formObject';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import * as _ from 'lodash'; 
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-login',
@@ -18,26 +18,26 @@ export class LoginComponent implements OnInit {
 
   submitLogin(form) {
     // first get the records
-    if(localStorage.getItem('records')){
+    debugger;
+    if (localStorage.getItem('records')) {
       this.data = JSON.parse(localStorage.getItem('records')).data;
     }
 
-    const index = _.findIndex(this.data, ['username', form.value.email]);
-    if (index >= 0){
+    const index = _.findIndex(this.data, ['username', form.value.username]);
+    if (index >= 0) {
       if (this.data[index].password === form.value.password) {
-        this.router.navigate(['/student']);
+        this.router.navigate(['/profile', index]);
         form.reset();
-      }else{
+      } else {
         alert('Username and Password do not match!');
       }
-    }else{
+    } else {
       alert('Username not found!');
     }
-    
   }
 
   ngOnInit() {
-    
+
   }
 
 }

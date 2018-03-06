@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+
 
 @Component({
   selector: 'app-register-form',
@@ -7,25 +8,36 @@ import { Router } from '@angular/router';
   styleUrls: ['./register-form.component.css']
 })
 export class RegisterFormComponent implements OnInit {
+  @ViewChild('registerForm') form;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
+   const id =  this.route.snapshot.paramMap.get('id');
+   this.getProfileData(id);
   }
 
-  submitRegister(form){
-    debugger;
+  submitRegister(form) {
     let data = [];
-    if(localStorage.getItem('records')){
+    if (localStorage.getItem('records')) {
       data = JSON.parse(localStorage.getItem('records')).data;
     }
 
-    if(form.valid){
+    if (form.valid) {
       data.push(form.value);
-      localStorage.setItem('records', JSON.stringify({data}));
+      localStorage.setItem('records', JSON.stringify({ data }));
       this.router.navigate(['/login']);
     }
-    
+  }
+
+  getProfileData(id) {
+    debugger;
+    const profileData = JSON.parse(localStorage.getItem('records')).data[id];
+    setTimeout(() => {
+      this.form.form.setValue(profileData);
+      this.form.form.disabled();
+
+    }, 200);
   }
 
 }

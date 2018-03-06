@@ -28,7 +28,7 @@ import { NoFoundComponent } from './no-found/no-found.component';
     ReactiveFormsModule,
     RouterModule.forRoot([
       { path: 'login', component: LoginComponent },
-      { path: 'student', component: StudentComponent },
+      { path: 'profile/:id', component: RegisterFormComponent },
       { path: 'faculty', component: FacultyComponent },
       { path: 'admin', component: AdminComponent },
       { path: 'register', component: RegisterFormComponent },
