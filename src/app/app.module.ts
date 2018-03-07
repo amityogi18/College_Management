@@ -29,6 +29,7 @@ import { NoFoundComponent } from './no-found/no-found.component';
     RouterModule.forRoot([
       { path: 'login', component: LoginComponent },
       { path: 'profile/:id', component: RegisterFormComponent },
+      { path: 'profile', component: RegisterFormComponent },
       { path: 'faculty', component: FacultyComponent },
       { path: 'admin', component: AdminComponent },
       { path: 'register', component: RegisterFormComponent },

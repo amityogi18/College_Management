@@ -10,7 +10,11 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class RegisterFormComponent implements OnInit {
   @ViewChild('registerForm') form;
   hide: boolean;
-  constructor(private router: Router, private route: ActivatedRoute) { }
+  mode: string;
+  constructor(private router: Router, private route: ActivatedRoute) { 
+    this.hide = false;
+    this.mode = 'add';
+  }
 
   ngOnInit() {
    const id =  this.route.snapshot.paramMap.get('id');
@@ -18,6 +22,7 @@ export class RegisterFormComponent implements OnInit {
   }
 
   submitRegister(form) {
+
     let data = [];
     if (localStorage.getItem('records')) {
       data = JSON.parse(localStorage.getItem('records')).data;
@@ -35,8 +40,18 @@ export class RegisterFormComponent implements OnInit {
     setTimeout(() => {
       this.hide = true;
       this.form.form.setValue(profileData);
-
+      this.mode = 'edit';
     }, 200);
+  }
+
+  editProfile() {
+    this.hide = false;
+    this.mode = 'save';
+  }
+
+  saveProfile() {
+    this.mode = 'edit'
+    this.hide = true;
   }
 
 }
