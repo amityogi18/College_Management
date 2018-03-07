@@ -3,8 +3,6 @@
     <div class="col-sm-offset-2 col-sm-8">
       <div class="panel panel-default">
         <div class="panel-heading">Profile
-          <button *ngIf="mode==='edit'" class="btn btn-primary pull-right" style="margin-top: -7px;" (click)="editProfile()" type="submit">Edit Profile</button>
-          <button *ngIf="mode==='save'" class="btn btn-primary pull-right" style="margin-top: -7px;" (click)="saveProfile()" type="submit">Save Profile</button>
         </div>
         <div class="panel-body">
           <div class="content-wrapper">
@@ -133,6 +131,9 @@
               <div class="form-group">
                 <div class="pull-right">
                   <button *ngIf="mode==='add'" class="btn btn-primary" type="submit">Sign Up</button>
+                  <button *ngIf="mode==='edit'" class="btn btn-primary pull-right" style="margin-top: -7px;" (click)="editProfile()" type="submit">Edit Profile</button>
+                  <button *ngIf="mode==='save'" class="btn btn-primary pull-right" style="margin-top: -7px;" (click)="saveProfile(registerForm)" type="submit">Save Profile</button>
+
                 </div>
               </div>
             </form>
