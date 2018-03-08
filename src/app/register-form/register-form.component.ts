@@ -11,6 +11,8 @@ export class RegisterFormComponent implements OnInit {
   @ViewChild('registerForm') form;
   hide: boolean;
   mode: string;
+  id: any;
+  responseData: Array<any> = [];
   constructor(private router: Router, private route: ActivatedRoute) {
     debugger;
     this.hide = false;
@@ -18,33 +20,34 @@ export class RegisterFormComponent implements OnInit {
   }
 
   ngOnInit() {
-   const id =  this.route.snapshot.paramMap.get('id');
-   this.getProfileData(id);
+    this.id = this.route.snapshot.paramMap.get('id');
+    this.getProfileData();
+    this.showStudentList();
   }
 
   submitRegister(form) {
     debugger;
-    let data = [];
     if (localStorage.getItem('records')) {
-      data = JSON.parse(localStorage.getItem('records')).data;
+      this.responseData = JSON.parse(localStorage.getItem('records')).data;
     }
 
     if (form.valid) {
-      data.push(form.value);
-      localStorage.setItem('records', JSON.stringify({ data }));
+      this.responseData.push(form.value);
+      localStorage.setItem('records', JSON.stringify({ data: this.responseData }));
       this.router.navigate(['/login']);
     }
   }
 
-  getProfileData(id) {
+  getProfileData() {
     debugger;
-    if (_.isEmpty(id)) {
+    if (_.isEmpty(this.id)) {
       this.hide = false;
     } else {
       if (_.isEmpty(localStorage.getItem('records'))) {
         this.router.navigate(['/']);
+        return;
       }
-      const profileData = JSON.parse(localStorage.getItem('records')).data[id];
+      const profileData = JSON.parse(localStorage.getItem('records')).data[this.id];
       setTimeout(() => {
         this.hide = true;
         this.form.form.setValue(profileData);
@@ -60,13 +63,18 @@ export class RegisterFormComponent implements OnInit {
 
   saveProfile(param) {
     debugger;
-    let data = [];
     if (param.valid) {
-      data.push(param.value);
-      localStorage.setItem('records', JSON.stringify({ data }));
+      this.responseData[this.id] = param.value;
+      localStorage.setItem('records', JSON.stringify({ data: this.responseData }));
+      this.mode = 'edit';
+      this.hide = true;
+      return false;
     }
-    this.mode = 'edit';
-    this.hide = true;
+  }
+
+  showStudentList() {
+    debugger;
+    this.responseData = JSON.parse(localStorage.getItem('records'));
   }
 
 }

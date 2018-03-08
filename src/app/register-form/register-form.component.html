@@ -131,8 +131,8 @@
               <div class="form-group">
                 <div class="pull-right">
                   <button *ngIf="mode==='add'" class="btn btn-primary" type="submit">Sign Up</button>
-                  <button *ngIf="mode==='edit'" class="btn btn-primary pull-right" style="margin-top: -7px;" (click)="editProfile()" type="submit">Edit Profile</button>
-                  <button *ngIf="mode==='save'" class="btn btn-primary pull-right" style="margin-top: -7px;" (click)="saveProfile(registerForm)" type="submit">Save Profile</button>
+                  <button *ngIf="mode==='edit'" class="btn btn-primary pull-right" style="margin-top: -7px;" (click)="editProfile()" >Edit Profile</button>
+                  <button *ngIf="mode==='save'" class="btn btn-primary pull-right" style="margin-top: -7px;" (click)="saveProfile(registerForm)" >Save Profile</button>
 
                 </div>
               </div>
@@ -142,4 +142,42 @@
       </div>
     </div>
   </div>
+</div>
+
+<div>
+  <button type="button" class="btn btn-primary" (click)="showStudentList()" >Student List</button>
+</div>
+<div class="col-md-6 pull-left">
+  <div [hidden]="responseData.length !== 0">
+      <span>No Records</span>
+  </div>
+  <table class="table" [hidden]="responseData.length === 0">
+      <thead>
+          <tr>
+              <th style="text-align:center">SR NO</th>
+              <th style="text-align:center">Hostname</th>
+              <th style="text-align:center">Loopback</th>
+              <th style="text-align:center">ACTION</th>
+
+          </tr>
+      </thead>
+      <tbody>
+          <tr *ngFor="let user of responseData.data; index as i" [attr.data-index]="i">
+              <td style="text-align:center">{{i+1}}</td>
+              <td style="text-align:center">{{user.firstName}}</td>
+              <td style="text-align:center">{{user.lastName}}</td>
+              <td>
+                  <button class="btn btn-primary btn-xs" (click)='onEditClick(user)'>
+                      <i class="fa fa-edit"></i>
+                  </button>
+                  <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#viewInterface" (click)='viewHostName(user)'>
+                      <i class="fa fa-eye"></i>
+                  </button>
+                  <button class="btn btn-primary btn-xs" (click)='deleteHostName(i)'>
+                      <i class="fa fa-trash"></i>
+                  </button>
+              </td>
+          </tr>
+      </tbody>
+  </table>
 </div>
